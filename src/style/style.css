@@ -167,8 +167,11 @@ html {
   font-weight: bold;
 }
 .input-wrapper input {
-  padding: 5px;
-  font-size: 1.2rem;
+  padding: 10px;
+  font-size: medium;
+  border-radius: 5px;
+  font-size: medium;
+  background-color: white;
 }
 
 /**************** Error control ****************/
@@ -205,6 +208,7 @@ select {
   padding: 10px;
   background-color: white;
   border-radius: 5px;
+  font-size: medium;
 }
 
 .form-content {

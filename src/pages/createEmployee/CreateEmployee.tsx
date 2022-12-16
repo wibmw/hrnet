@@ -2,21 +2,15 @@ import { useState } from 'react'
 import Input from '../../components/forms/InputText'
 import DatePicker from '../../components/forms/DatePicker'
 import Select from '../../components/forms/Select'
-import { depatementOptions } from '../../utils/localDatas'
+import { depatementOptions, statesOptions } from '../../utils/localDatas'
 
 const CreateEmployee = () => {
-  const [formState, setFormState] = useState<IForm>({
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      isFirstNameValid: false,
-      isLastNameValid: false,
-      isEmailValid: false,
-      isPasswordValid: false,
-    }),
+  const [formState, setFormState] = useState<IForm>(),
     save = () => {
-      console.log(formState)
+      Object.keys(formState).map(state => {
+        console.log(state)
+      })
+      
     }
 
   return (
@@ -32,10 +26,7 @@ const CreateEmployee = () => {
             {/** *********** Lastname Input ******************/}
             <Input name='lastName' label='Last Name' setFormState={setFormState} />
             {/** *********** Birth's Date Picker ******************/}
-            <div className='input-wrapper'>
-              <label htmlFor='birthDate'>Date of Birth</label>
-              <input type='text' id='birthDate' name='birthDate' />
-            </div>
+            <DatePicker name='birthDate' label='Date of Birth' setFormState={setFormState} />
             {/** *********** Start Date Picker ******************/}
             <DatePicker name='startDate' label='Start Date' setFormState={setFormState} />
             <fieldset className='input-wrapper'>
@@ -45,8 +36,7 @@ const CreateEmployee = () => {
               {/** *********** City Input ******************/}
               <Input name='city' label='City' setFormState={setFormState} />
               {/** *********** State Selelct ******************/}
-              <Select name='state' label='State' options={depatementOptions} setFormState={setFormState} />
-
+              <Select name='state' label='State' options={statesOptions} setFormState={setFormState} />
               {/** *********** Zip Code Input ******************/}
               <Input name='zipCode' label='Zip Code' setFormState={setFormState} />
             </fieldset>
