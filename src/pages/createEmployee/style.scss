@@ -1,0 +1,11 @@
+.form-content {
+    border-radius: 10px;
+    background-color: $secondary-color;
+    & h1 {
+        color: darkgreen;
+    }
+    & input[type="text"] {
+        border: 1px solid;
+        border-radius: 5px;
+    }
+}

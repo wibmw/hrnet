@@ -1,0 +1,50 @@
+/****************** HEADER ************************/
+
+.header {
+  color: $text-light-color;
+  margin-bottom: 2rem;
+}
+
+/****************** Main Nav ************************/
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0 20px;
+  border-bottom: 2px solid #ccc;
+  & h1 {
+    position: relative;
+    bottom: 55px;
+    margin: 0;
+  }
+  & a {
+    font-weight: bold;
+    color: $text-dark-color;
+  }
+  & a.router-link-exact-active {
+    color: #42b983;
+  }
+}
+
+.main-nav-item {
+  text-decoration: none;
+  margin-right: 0.5rem;
+  position: relative;
+  bottom: 15px;
+  &:hover {
+    text-decoration: underline;
+  }
+
+  & i {
+    margin-right: inherit;
+  }
+}
+
+.main-nav-logo {
+  display: flex;
+  align-items: center;
+  &-image {
+    max-width: 100%;
+    width: 150px;
+  }
+}

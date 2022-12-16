@@ -1,0 +1,14 @@
+// Base
+@import './sass/colors';
+@import './sass/base';
+@import './sass/mixins';
+@import './sass/typography';
+// Components
+@import './components/static/header/style';
+@import './components/static/footer/style';
+@import './components/forms/style';
+
+// Pages
+@import './pages/createEmployee/style';
+@import './pages/currentEmployees/style';
+@import './pages/error/style';
