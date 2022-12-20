@@ -1,13 +1,17 @@
-import { IForm } from '../../pages/createEmployee/CreateEmployee'
-import React, { ChangeEvent } from 'react'
-import InputWrapper from './InputWrapper'
+import { ChangeEvent } from 'react'
+import InputWrapper, {IFormState } from './InputWrapper'
+import { inputCheck } from '../../utils/formValidation'
 
-const InputText = (props: { name: string; label: string; setFormState: React.Dispatch<React.SetStateAction<IForm>> }) => {
-  const { name, label, setFormState } = props,
-    handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+interface IPropsInputText extends IFormState {
+  regexp: RegExp
+  message: string
+}
+
+const InputText = ({ name, label, setFormState, regexp, message }: IPropsInputText) => {
+  const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
       const name = target.name,
         isValidName = 'is' + name.charAt(0).toUpperCase() + name.slice(1) + 'Valid'
-      setFormState((prev) => ({ ...prev, [name]: target.value, [isValidName]: true }))
+      setFormState((prev) => ({ ...prev, [name]: target.value, [isValidName]: inputCheck(target, regexp, message) }))
     }
 
   return (

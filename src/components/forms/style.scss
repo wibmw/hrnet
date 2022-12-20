@@ -1,47 +1,4 @@
 /****************** FORMS ************************/
-/****************** Button ************************/
-.form-button {
-  display: block;
-  padding: 8px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-top: 1rem;
-  border-color: $primary-color;
-  background-color: $primary-color;
-  color: $text-light-color;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-/****************** Content ************************/
-.form-content {
-  background-color: white;
-  width: 300px;
-  margin: 0 auto;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  padding: 2rem;
-  & a {
-    text-decoration: none;
-  }
-}
-
-/****************** Icon ************************/
-.form-icon {
-  font-size: 5rem;
-}
-
-/****************** Checkbox remember me ************************/
-.input-remember {
-  display: flex;
-  & input {
-    cursor: pointer;
-  }
-  & label {
-    margin-left: 0.25rem;
-  }
-}
-
 /****************** Form ************************/
 .input-wrapper {
   display: flex;
@@ -78,11 +35,11 @@ p[data-error] {
   text-align: left;
   transition: 0.3s;
 }
-.input-wrapper[data-error-visible='true']::after {
+input[data-error-visible='true']::after {
   opacity: 1;
   margin-bottom: 5px;
 }
-.input-wrapper[data-error-visible='true'] input {
+input[data-error-visible='true'] {
   border: 2px solid rgb(255, 0, 0);
   border-radius: 3px;
 }

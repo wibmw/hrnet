@@ -1,5 +1,9 @@
-const InputWrapper = (props: { name: string; label: string; children: JSX.Element }) => {
-  const { name, label, children } = props
+import React from 'react'
+import { IForm } from '../../pages/createEmployee/CreateEmployee'
+
+
+
+const InputWrapper = ({ name, label, children }: IPropsInputWrapper) => {
 
   return (
     <>
@@ -13,3 +17,16 @@ const InputWrapper = (props: { name: string; label: string; children: JSX.Elemen
 }
 
 export default InputWrapper
+
+interface IInputLabel {
+  name: string
+  label: string
+}
+
+interface IPropsInputWrapper extends IInputLabel {
+  children: JSX.Element
+}
+
+export interface IFormState extends IInputLabel {
+  setFormState: React.Dispatch<React.SetStateAction<IForm>>
+}

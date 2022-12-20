@@ -1,5 +1,4 @@
-/******************* COLORS ************************/
-/******************* BASE ************************/
+/******************* COLORS ************************/ /******************* BASE ************************/
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.4.2/css/all.min.css);
 body {
   margin: 0;
@@ -21,19 +20,16 @@ body {
 
 .sr-only {
   border: 0 !important;
-  clip: rect(1px, 1px, 1px, 1px) !important;
-  /* 1 */
+  clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
   -webkit-clip-path: inset(50%) !important;
-  clip-path: inset(50%) !important;
-  /* 2 */
+  clip-path: inset(50%) !important; /* 2 */
   height: 1px !important;
   margin: -1px !important;
   overflow: hidden !important;
   padding: 0 !important;
   position: absolute !important;
   width: 1px !important;
-  white-space: nowrap !important;
-  /* 3 */
+  white-space: nowrap !important; /* 3 */
 }
 
 /******************* Global Flex ************************/
@@ -113,49 +109,6 @@ html {
 }
 
 /****************** FORMS ************************/
-/****************** Button ************************/
-.form-button {
-  display: block;
-  padding: 8px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-top: 1rem;
-  border-color: #00bc77;
-  background-color: #00bc77;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-/****************** Content ************************/
-.form-content {
-  background-color: white;
-  width: 300px;
-  margin: 0 auto;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  padding: 2rem;
-}
-.form-content a {
-  text-decoration: none;
-}
-
-/****************** Icon ************************/
-.form-icon {
-  font-size: 5rem;
-}
-
-/****************** Checkbox remember me ************************/
-.input-remember {
-  display: flex;
-}
-.input-remember input {
-  cursor: pointer;
-}
-.input-remember label {
-  margin-left: 0.25rem;
-}
-
 /****************** Form ************************/
 .input-wrapper {
   display: flex;
@@ -193,13 +146,13 @@ p[data-error] {
   transition: 0.3s;
 }
 
-.input-wrapper[data-error-visible=true]::after {
+input[data-error-visible=true]::after {
   opacity: 1;
   margin-bottom: 5px;
 }
 
-.input-wrapper[data-error-visible=true] input {
-  border: 2px solid red;
+input[data-error-visible=true] {
+  border: 2px solid rgb(255, 0, 0);
   border-radius: 3px;
 }
 
@@ -211,7 +164,28 @@ select {
   font-size: medium;
 }
 
+/****************** FORMS ************************/
+/****************** Button ************************/
+.form-button {
+  display: block;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/****************** Content ************************/
 .form-content {
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
   border-radius: 10px;
   background-color: #d6ebcc;
 }
@@ -219,8 +193,15 @@ select {
   color: darkgreen;
 }
 .form-content input[type=text] {
-  border: 1px solid;
   border-radius: 5px;
+}
+.form-content a {
+  text-decoration: none;
+}
+
+/****************** Icon ************************/
+.form-icon {
+  font-size: 5rem;
 }
 
 /**************** 404 Error ****************/
@@ -229,7 +210,7 @@ select {
   flex-direction: column;
   align-items: center;
   flex: 1 0 auto;
-  color: #c90202;
+  color: rgb(201, 2, 2);
   margin-top: -100px;
   text-align: center;
 }

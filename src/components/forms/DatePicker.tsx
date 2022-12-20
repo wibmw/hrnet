@@ -1,19 +1,14 @@
-import { IForm } from '../../pages/createEmployee/CreateEmployee'
-import React, { ChangeEvent } from 'react'
-import InputWrapper from './InputWrapper'
+import { ChangeEvent } from 'react'
+import InputWrapper, { IFormState } from './InputWrapper'
+import { emptyCheck } from '../../utils/formValidation'
 
-const DatePicker = (props: {
-  name: string
-  label: string
-  setFormState: React.Dispatch<React.SetStateAction<IForm>>
-}) => {
-  const { name, label, setFormState } = props,
-  date = new Date(),
-  maxDate = date.setFullYear(date.getFullYear() + 1),
+const DatePicker = ({ name, label, setFormState, message }: IPropsDatePicker) => {
+  const date = new Date(),
+    maxDate = date.setFullYear(date.getFullYear() + 1),
     handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
       const name = target.name,
         isValidName = 'is' + name.charAt(0).toUpperCase() + name.slice(1) + 'Valid'
-      setFormState((prev) => ({ ...prev, [name]: target.value, [isValidName]: true }))
+      setFormState((prev) => ({ ...prev, [name]: target.value, [isValidName]: emptyCheck(target, message) }))
     }
 
   return (
@@ -27,3 +22,7 @@ const DatePicker = (props: {
 }
 
 export default DatePicker
+
+interface IPropsDatePicker extends IFormState {
+  message: string
+}
