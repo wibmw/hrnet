@@ -168,7 +168,7 @@ select {
   z-index: 9999;
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   background: rgba(0, 0, 0, 0.7);
   display: flex;
@@ -179,9 +179,7 @@ select {
 .modal-box {
   display: block;
   background: white;
-  width: 70%;
-  height: 70%;
-  padding: 1rem;
+  padding: 3rem;
   border-radius: 1rem;
 }
 
