@@ -3,14 +3,24 @@ import Input from '../../components/forms/InputText'
 import DatePicker from '../../components/forms/DatePicker'
 import Select from '../../components/forms/Select'
 import { depatementOptions, statesOptions } from '../../utils/localDatas'
+import Modal from '../../components/modal/Modal'
+import { isError } from '../../utils/formValidation'
+
 
 const CreateEmployee = () => {
-  const [formState, setFormState] = useState<IForm>(),
-    save = () => {
-      Object.values(formState).map(state => {
-        console.log(state)
-      })
-      
+  const [formState, setFormState] = useState<IForm>(initForm),
+    [isOpen, setisOpen] = useState(false),
+    toggle = () => {
+      setisOpen(!isOpen)
+    },
+    save = (e: React.FormEvent<EventTarget>) => {
+      const fieldsNumber = Object.keys(formState).filter(fieldName => fieldName.includes('Valid')).length
+      const countValid = Object.values(formState).filter(Boolean).length / 2
+      if (fieldsNumber === countValid) {
+        setisOpen(true)
+      } else {
+        isError( e, false, 'Error')
+      }
     }
 
   return (
@@ -32,13 +42,13 @@ const CreateEmployee = () => {
             <fieldset className='input-wrapper'>
               <legend>Address</legend>
               {/** *********** Street Input ******************/}
-              <Input name='street' label='Street' regexp={/^[a-zA-Z0-9éèàçùê -]{2,120}$/} message='Invalid Street !'  setFormState={setFormState} />
+              <Input name='street' label='Street' regexp={/^[a-zA-Z0-9éèàçùê, -]{2,120}$/} message='Invalid Street !' setFormState={setFormState} />
               {/** *********** City Input ******************/}
-              <Input name='city' label='City' regexp={/^[a-zA-Zéèàçùê -]{2,50}$/} message='Invalid City !'  setFormState={setFormState} />
+              <Input name='city' label='City' regexp={/^[a-zA-Zéèàçùê -]{2,50}$/} message='Invalid City !' setFormState={setFormState} />
               {/** *********** State Selelct ******************/}
               <Select name='state' label='State' options={statesOptions} message='Invalid State !' setFormState={setFormState} />
               {/** *********** Zip Code Input ******************/}
-              <Input name='zipCode' label='Zip Code' regexp={/^[0-9]{4,5}$/} message='Invalid Zip Code !'  setFormState={setFormState} />
+              <Input name='zipCode' label='Zip Code' regexp={/^[0-9]{4,5}$/} message='Invalid Zip Code !' setFormState={setFormState} />
             </fieldset>
             {/** *********** Department Selelct ******************/}
             <Select name='department' label='Department' options={depatementOptions} message='Invalid Departement !' setFormState={setFormState} />
@@ -54,6 +64,9 @@ const CreateEmployee = () => {
             </div>
           </form>
         </section>
+        <Modal isOpen={isOpen} toggle={toggle}>
+        <div>Employé enregistré !</div>
+      </Modal>
       </main>
     </>
   )
@@ -64,7 +77,41 @@ export default CreateEmployee
 export interface IForm {
   firstName: string | null
   lastName: string | null
+  birthDate: string | null
+  startDate: string | null
+  street: string | null
+  city: string | null
+  state: string | null
+  zipCode: number | null
+  department: string | null
   isFirstNameValid: boolean
   isLastNameValid: boolean
+  isBirthDateValid: boolean
+  isStartDateValid: boolean
+  isStreetValid: boolean
+  isCityValid: boolean
+  isStateValid: boolean
+  isZipCodeValid: boolean
+  isDepartmentValid: boolean
 }
 
+const initForm: IForm = {
+  firstName: '',
+  lastName: '',
+  birthDate: '',
+  startDate: '',
+  street: '',
+  city: '',
+  state: '',
+  zipCode: 0,
+  department: '',
+  isFirstNameValid: false,
+  isLastNameValid: false,
+  isBirthDateValid: false,
+  isStartDateValid: false,
+  isStreetValid: false,
+  isCityValid: false,
+  isStateValid: false,
+  isZipCodeValid: false,
+  isDepartmentValid: false
+}
