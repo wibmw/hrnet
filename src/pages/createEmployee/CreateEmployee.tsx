@@ -6,6 +6,7 @@ import { depatementOptions, statesOptions } from '../../utils/localDatas'
 import Modal from '../../components/modal/Modal'
 import { clearValidationMessage, setValidationMessage } from '../../utils/formValidation'
 import { useNavigate } from 'react-router-dom'
+import { createNewEmployee } from '../../api/firebase'
 
 const CreateEmployee = () => {
   const navigate = useNavigate(),
@@ -21,6 +22,7 @@ const CreateEmployee = () => {
       if (fieldsNumber === countValid) {
         setisOpen(true)
         clearValidationMessage(element)
+        createNewEmployee(Date.now(), formState)
       } else {
         setValidationMessage(element, 'The form is not fullfilled correctly')
       }

@@ -1,4 +1,8 @@
+import { GetEmployeesList } from '../../api/firebase'
+
 const CurrentEmployees = () => {
+  const employeesList = GetEmployeesList()
+
   return (
     <>
       {/** *********** Sign In Page ******************/}

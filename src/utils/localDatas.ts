@@ -14,6 +14,17 @@ export const setLocalToken = (token: string, rememberMe: boolean) => {
   cookie.set('token', token, options)
 }
 */
+
+export const handleSaveToPC = (jsonData, filename) => {
+  const fileData = JSON.stringify(jsonData)
+  const blob = new Blob([fileData], { type: 'text/plain' })
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.download = `${filename}.json`
+  link.href = url
+  link.click()
+}
+
 export const depatementOptions = [
   { value: '', text: '--Choose an option--' },
   { value: 'sales', text: 'Sales' },
