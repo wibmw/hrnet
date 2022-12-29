@@ -1,8 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
-import { getDatabase, ref, set, get, onValue } from 'firebase/database'
+import { getDatabase, ref, set, onValue, push, orderByKey, query } from 'firebase/database'
 import { useEffect, useState } from 'react'
-import { IForm } from '../pages/createEmployee/CreateEmployee'
+import { IEmployee, IForm } from '../pages/createEmployee/CreateEmployee'
+import { formattedEmployee, timestamp } from '../utils/formatter'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,40 +25,47 @@ const app = initializeApp(firebaseConfig)
 const db = getDatabase(app)
 // Create a new employee
 export const createNewEmployee = (
-  employeeId: number,
+  // employeeId: number,
   { firstName, lastName, birthDate, startDate, street, city, state, zipCode, department }: IForm,
 ) => {
-  const reference = ref(db, 'employees/' + employeeId)
+  const reference = ref(db, 'employees/'),
+    newEmployeeRef = push(reference),
+    employee = {
+      firstName: firstName,
+      lastName: lastName,
+      birthDate: birthDate,
+      startDate: startDate,
+      street: street,
+      city: city,
+      state: state,
+      zipCode: zipCode,
+      department: department,
+      createdAt: timestamp,
+      updatedAt: timestamp,
+    }
 
-  set(reference, {
-    firstName: firstName,
-    lastName: lastName,
-    birthDate: birthDate,
-    startDate: startDate,
-    street: street,
-    city: city,
-    state: state,
-    zipCode: zipCode,
-    department: department,
-  })
+  set(newEmployeeRef, employee)
 }
 
-// Create a new employee
+// Get all employees
 export const GetEmployeesList = () => {
-  const [projects, setProjects] = useState([])
+  const [employeesList, setEmployeesList] = useState<IEmployee[]>([])
 
   useEffect(() => {
-    const query = ref(db, 'employees/')
-    return onValue(query, (snapshot) => {
-      const data = snapshot.val()
+    if (employeesList.length === 0) {
+      const orderedQuery = query(ref(db, 'employees/'), orderByKey())
+      return onValue(orderedQuery, (snapshot) => {
+        const data: IEmployee[] = snapshot.val()
 
-      if (snapshot.exists()) {
-        Object.values(data).map((project) => {
-          setProjects((projects) => [...projects, project])
-        })
-      }
-    })
-  }, [])
+        if (snapshot.exists()) {
+          Object.values(data).map((employee) => {
+            console.log(Object.entries(employee))
+            setEmployeesList((employees) => [...employees, formattedEmployee(employee)])
+          })
+        }
+      })
+    }
+  }, [employeesList])
 
-  return projects
+  return employeesList
 }

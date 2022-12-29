@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Input from '../../components/forms/InputText'
 import DatePicker from '../../components/forms/DatePicker'
 import Select from '../../components/forms/Select'
-import { depatementOptions, statesOptions } from '../../utils/localDatas'
+import { departementOptions, statesOptions } from '../../utils/localDatas'
 import Modal from '../../components/modal/Modal'
 import { clearValidationMessage, setValidationMessage } from '../../utils/formValidation'
 import { useNavigate } from 'react-router-dom'
@@ -22,7 +22,7 @@ const CreateEmployee = () => {
       if (fieldsNumber === countValid) {
         setisOpen(true)
         clearValidationMessage(element)
-        createNewEmployee(Date.now(), formState)
+        createNewEmployee(formState)
       } else {
         setValidationMessage(element, 'The form is not fullfilled correctly')
       }
@@ -95,7 +95,7 @@ const CreateEmployee = () => {
             <Select
               name='department'
               label='Department'
-              options={depatementOptions}
+              options={departementOptions}
               message='Invalid Departement !'
               setFormState={setFormState}
             />
@@ -127,7 +127,7 @@ const CreateEmployee = () => {
 
 export default CreateEmployee
 
-export interface IForm {
+export interface IEmployee {
   firstName: string | null
   lastName: string | null
   birthDate: string | null
@@ -137,6 +137,11 @@ export interface IForm {
   state: string | null
   zipCode: number | null
   department: string | null
+  createdAt?: string | null
+  updatedAt?: string | null
+}
+
+export interface IForm extends IEmployee {
   isFirstNameValid: boolean
   isLastNameValid: boolean
   isBirthDateValid: boolean

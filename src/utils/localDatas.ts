@@ -25,7 +25,7 @@ export const handleSaveToPC = (jsonData, filename) => {
   link.click()
 }
 
-export const depatementOptions = [
+export const departementOptions = [
   { value: '', text: '--Choose an option--' },
   { value: 'sales', text: 'Sales' },
   { value: 'marketing', text: 'Marketing' },
