@@ -183,6 +183,27 @@ select {
   border-radius: 1rem;
 }
 
+/****************** Table Content ************************/
+.table-content {
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: #d6ebcc;
+}
+.table-content thead td {
+  padding: 10px;
+  font-weight: bold;
+}
+
+/****************** Media Query ************************/
+@media (max-width: 770px) {
+  .table-content {
+    max-width: 650px;
+  }
+}
 /****************** FORMS ************************/
 /****************** Button ************************/
 .form-button {
