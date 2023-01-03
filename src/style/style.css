@@ -193,9 +193,24 @@ select {
   border-radius: 10px;
   background-color: #d6ebcc;
 }
-.table-content thead td {
+.table-content thead th {
   padding: 10px;
   font-weight: bold;
+}
+.table-content thead th.up {
+  background-image: url("../assets/images/up_arrow.png");
+}
+.table-content thead th.down {
+  background-image: url("../assets/images/down_arrow.png");
+}
+.table-content thead th.default {
+  background-image: url("../assets/images/default.png");
+}
+.table-content thead th.up, .table-content thead th.default, .table-content thead th.down {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center right;
+  padding-right: 20px;
 }
 
 /****************** Media Query ************************/

@@ -1,10 +1,21 @@
 import { GetEmployeesList } from '../../api/firebase'
 import Table from '../../components/table/Table'
 
-const { Head: Header, Body } = Table
 
 const CurrentEmployees = () => {
   const employeesList = GetEmployeesList()
+
+  const columns = [
+    { label: 'First Name', accessor: 'firstName', sortable: true },
+    { label: 'Last Name', accessor: 'lastName', sortable: true },
+    { label: 'Start Date', accessor: 'startDate', sortable: true },
+    { label: 'Department', accessor: 'department', sortable: true },
+    { label: 'Date of Birth', accessor: 'birthDate', sortable: true },
+    { label: 'Street', accessor: 'street', sortable: true },
+    { label: 'City', accessor: 'city', sortable: true },
+    { label: 'State', accessor: 'state', sortable: true },
+    { label: 'Zip Code', accessor: 'zipCode', sortable: true },
+  ]
 
   console.log(employeesList)
   return (
@@ -12,35 +23,8 @@ const CurrentEmployees = () => {
       {/** *********** Sign In Page ******************/}
       <main className='main main-bg'>
         <section className='table-content'>
-          {employeesList && (
-            <Table employeesList={employeesList} isAutomatic={false}>
-              <Header>
-                <td>First Name</td>
-                <td>Last Name</td>
-                <td>Start Date</td>
-                <td>Department</td>
-                <td>Date of Birth</td>
-                <td>Street</td>
-                <td>City</td>
-                <td>State</td>
-                <td>Zip Code</td>
-              </Header>
-              <Body>
-                {employeesList.map((employee, index) => (
-                  <tr key={index}>
-                    <td>{employee.firstName}</td>
-                    <td>{employee.lastName}</td>
-                    <td>{employee.startDate}</td>
-                    <td>{employee.department}</td>
-                    <td>{employee.birthDate}</td>
-                    <td>{employee.street}</td>
-                    <td>{employee.city}</td>
-                    <td>{employee.state}</td>
-                    <td>{employee.zipCode}</td>
-                  </tr>
-                ))}
-              </Body>
-            </Table>
+          {employeesList.length && (
+            <Table caption='Employees List' tableDatas={employeesList} columns={columns} />
           )}
         </section>
       </main>

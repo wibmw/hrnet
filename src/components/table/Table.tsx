@@ -1,42 +1,45 @@
-import { IEmployee } from '../../pages/createEmployee/CreateEmployee'
+import { useSortableTable } from '../../hook/useSortableTable'
+import THead from './THead'
+import TBody from './TBody'
 
-const Table = ({ employeesList, isAutomatic, children }: IPropsTable) => {
+const Table = ({ caption: Title, tableDatas, columns }: IPropsTable) => {
+  const [sortedDatas, handleSorting] = useSortableTable(tableDatas, columns)
+
   return (
-    employeesList.length && (
-      <table>
-        <thead>
-          <tr key={'header'}>
-            {isAutomatic
-              ? Object.keys(employeesList[0]).map((headerName, index) => <th key={index}>{headerName}</th>)
-              : children[0]}
-          </tr>
-        </thead>
-        <tbody>
-          {isAutomatic
-            ? employeesList.map((employee, index) => (
-                <tr key={index}>
-                  {Object.values(employee).map((value, index) => (
-                    <td key={index}>{value}</td>
-                  ))}
-                </tr>
-              ))
-            : children[1]}
-        </tbody>
-      </table>
+    sortedDatas && (
+      <>
+        {console.log(sortedDatas)}
+        <h1>{Title}</h1>
+        <table>
+          <THead columns={columns} handleSorting={handleSorting} />
+          <TBody columns={columns} tableDatas={sortedDatas} />
+        </table>
+      </>
     )
   )
 }
 
-Table.Head = ({ children }) => children
-Table.Body = ({ children }) => children
-
 export default Table
 
-interface IPropsTable extends IChildren {
-  employeesList: IEmployee[]
-  isAutomatic: boolean
+interface IPropsTable extends IChildren, ITable {
+  caption: string
+}
+
+export interface ITable {
+  tableDatas: ITableDatas[]
+  columns: IColumn[]
+}
+
+export interface IColumn {
+  label: string
+  accessor: string
+  sortable: boolean
 }
 
 interface IChildren {
-  children?: JSX.Element[]
+  children?: JSX.Element
+}
+
+export interface ITableDatas extends Record<any, any> {
+  id?: number
 }
