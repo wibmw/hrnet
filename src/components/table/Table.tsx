@@ -1,28 +1,41 @@
-import { useSortableTable } from '../../hook/useSortableTable'
 import THead from './THead'
 import TBody from './TBody'
+import { useSortableTable } from '../../hook/useSortableTable'
+import { FilterableTable } from '../../hook/FilterableTable'
+import { ChangeEvent, useState } from 'react'
 
-const Table = ({ caption: Title, tableDatas, columns }: IPropsTable) => {
-  const [sortedDatas, handleSorting] = useSortableTable(tableDatas, columns)
+const Table = ({ title, tableDatas, columns }: IPropsTable) => {
+  const [filter, setFilter] = useState(''),
+    [sortedDatas, handleSorting] = useSortableTable(tableDatas, columns),
+    filteredDatas = FilterableTable(sortedDatas, filter),
+    // Onchange, check and stock form datas in useState
+    handleFilterChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
+      setFilter(target.value)
+    }
 
   return (
-    sortedDatas && (
-      <>
-        {console.log(sortedDatas)}
-        <h1>{Title}</h1>
-        <table>
-          <THead columns={columns} handleSorting={handleSorting} />
-          <TBody columns={columns} tableDatas={sortedDatas} />
-        </table>
-      </>
-    )
+    <>
+      {sortedDatas && (
+        <>
+          <h1>{title}</h1>
+          <div className='input-wrapper'>
+            <label htmlFor='filter'>Search</label>
+            <input type='text' id='filter' name='filter' onChange={handleFilterChange} />
+          </div>
+          <table>
+            <THead columns={columns} handleSorting={handleSorting} />
+            <TBody columns={columns} tableDatas={filteredDatas} />
+          </table>
+        </>
+      )}
+    </>
   )
 }
 
 export default Table
 
-interface IPropsTable extends IChildren, ITable {
-  caption: string
+interface IPropsTable extends ITable {
+  title: string
 }
 
 export interface ITable {
@@ -34,10 +47,6 @@ export interface IColumn {
   label: string
   accessor: string
   sortable: boolean
-}
-
-interface IChildren {
-  children?: JSX.Element
 }
 
 export interface ITableDatas extends Record<any, any> {

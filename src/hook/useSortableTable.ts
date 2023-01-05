@@ -1,8 +1,12 @@
 import { useState } from 'react'
+import { ITableDatas } from '../components/table/Table'
 
-function getDefaultSorting(defaultTableData, columns) {
-  const sorted = [...defaultTableData].sort((a, b) => {
-    const filterColumn = columns.filter((column) => column.sortbyOrder)
+function getDefaultSorting(defaultTableData: ITableDatas[], columns) {
+  if (!(Symbol.iterator in Object(defaultTableData))) {
+    return defaultTableData
+  }
+  const sorted = [...defaultTableData]?.sort((a, b) => {
+    const filterColumn = columns?.filter((column) => column?.sortbyOrder)
 
     // Merge all array objects into single object and extract accessor and sortbyOrder keys
     const { accessor = 'id', sortbyOrder = 'asc' } = Object.assign({}, ...filterColumn)
@@ -21,9 +25,8 @@ function getDefaultSorting(defaultTableData, columns) {
 }
 
 export const useSortableTable = (data, columns) => {
-  const [tableData, setTableData] = useState(getDefaultSorting(data, columns))
 
-  console.log(data)
+  const [tableData, setTableData] = useState(getDefaultSorting(data, columns))
 
   const handleSorting = (sortField, sortOrder) => {
     if (sortField) {

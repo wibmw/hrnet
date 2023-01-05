@@ -30,8 +30,8 @@ export const formattedEmployee = (employee: IEmployee) => {
 }
 
 const retrieveSelection = (options: IOption[], value: string) => {
-  const option = options.find((option) => option.value === value)
-  return option.text
+  const option = options?.find((option) => option?.value === value)
+  return option?.text
 }
 
 interface IOption {

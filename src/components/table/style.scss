@@ -1,4 +1,7 @@
 /****************** Table Content ************************/
+table {
+  border-collapse: collapse;
+}
 .table-content {
   width: fit-content;
   margin: 0 auto;
@@ -7,7 +10,11 @@
   padding: 2rem;
   border-radius: 10px;
   background-color: $secondary-color;
+
   & thead {
+    background-color: white;
+    border: 2px solid #ccc;
+    border-radius: 10px;
     & th {
       padding: 10px;
       font-weight: bold;
@@ -27,6 +34,17 @@
         background-repeat: no-repeat;
         background-position: center right;
         padding-right: 20px;
+      }
+    }
+  }
+  & tbody {
+    & tr {
+      border-bottom: 2px solid #ccc;
+      &:nth-child(odd) {
+        background-color: rgba(255, 255, 255, 0.60);
+      }
+      &:nth-child(even) {
+
       }
     }
   }

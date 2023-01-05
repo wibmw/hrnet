@@ -3,7 +3,7 @@ const Footer = () => {
     <>
       {/** *********** Footer Section ******************/}
       <footer className='footer'>
-        <p className='footer-text'>Copyright 2022 WEALTH HEALTH</p>
+        <p className='footer-text'> Copyright {new Date().getFullYear()} WEALTH HEALTH</p>
       </footer>
     </>
   )
