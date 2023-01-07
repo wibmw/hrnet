@@ -225,8 +225,12 @@ table {
   border-bottom: 2px solid #ccc;
 }
 .table-content tbody tr:nth-child(odd) {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.7);
 }
+.table-content tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
 /****************** Media Query ************************/
 @media (max-width: 770px) {
   .table-content {

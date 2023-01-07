@@ -60,6 +60,7 @@ export const GetEmployeesList = () => {
         if (snapshot.exists()) {
           Object.values(data).map((employee) => {
             // console.log(Object.entries(employee))
+
             setEmployeesList((employees) => [...employees, formattedEmployee(employee)])
           })
         }

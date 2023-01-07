@@ -16,7 +16,7 @@ const THead = ({ columns, handleSorting }: IPropsHead) => {
     <thead>
       <tr>
         {columns.map(({ label, accessor, sortable }) => {
-          const cl = sortable
+          const className = sortable
             ? sortField === accessor && order === 'asc'
               ? 'up'
               : sortField === accessor && order === 'desc'
@@ -24,7 +24,7 @@ const THead = ({ columns, handleSorting }: IPropsHead) => {
               : 'default'
             : ''
           return (
-            <th key={accessor} onClick={sortable ? () => handleSortingChange(accessor) : null} className={cl}>
+            <th key={accessor} onClick={sortable ? () => handleSortingChange(accessor) : null} className={className}>
               {label}
             </th>
           )

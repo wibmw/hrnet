@@ -5,30 +5,28 @@ import { FilterableTable } from '../../hook/FilterableTable'
 import { ChangeEvent, useState } from 'react'
 
 const Table = ({ title, tableDatas, columns }: IPropsTable) => {
-  const [filter, setFilter] = useState(''),
+  const [filter, setFilter] = useState<string>(''),
     [sortedDatas, handleSorting] = useSortableTable(tableDatas, columns),
     filteredDatas = FilterableTable(sortedDatas, filter),
-    // Onchange, check and stock form datas in useState
+    // Onchange
     handleFilterChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
       setFilter(target.value)
     }
 
   return (
-    <>
-      {sortedDatas && (
-        <>
-          <h1>{title}</h1>
-          <div className='input-wrapper'>
-            <label htmlFor='filter'>Search</label>
-            <input type='text' id='filter' name='filter' onChange={handleFilterChange} />
-          </div>
-          <table>
-            <THead columns={columns} handleSorting={handleSorting} />
-            <TBody columns={columns} tableDatas={filteredDatas} />
-          </table>
-        </>
-      )}
-    </>
+    filteredDatas && (
+      <>
+        <h1>{title}</h1>
+        <div className='input-wrapper'>
+          <label htmlFor='filter'>Search</label>
+          <input type='text' id='filter' name='filter' onChange={handleFilterChange} />
+        </div>
+        <table>
+          <THead {...{ columns, handleSorting }} />
+          <TBody {...{ columns, tableDatas: filteredDatas }} />
+        </table>
+      </>
+    )
   )
 }
 

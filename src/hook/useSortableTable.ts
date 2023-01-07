@@ -5,8 +5,8 @@ function getDefaultSorting(defaultTableData: ITableDatas[], columns) {
   if (!(Symbol.iterator in Object(defaultTableData))) {
     return defaultTableData
   }
-  const sorted = [...defaultTableData]?.sort((a, b) => {
-    const filterColumn = columns?.filter((column) => column?.sortbyOrder)
+  const sorted = [...defaultTableData].sort((a, b) => {
+    const filterColumn = columns.filter((column) => column?.sortbyOrder)
 
     // Merge all array objects into single object and extract accessor and sortbyOrder keys
     const { accessor = 'id', sortbyOrder = 'asc' } = Object.assign({}, ...filterColumn)
@@ -15,7 +15,7 @@ function getDefaultSorting(defaultTableData: ITableDatas[], columns) {
     if (b[accessor] === null) return -1
     if (a[accessor] === null && b[accessor] === null) return 0
 
-    const ascending = a[accessor]?.toString()?.localeCompare(b[accessor]?.toString(), 'en', {
+    const ascending = a[accessor]?.toString().localeCompare(b[accessor].toString(), 'en', {
       numeric: true,
     })
 
