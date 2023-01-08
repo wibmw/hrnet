@@ -1,8 +1,13 @@
 import { useGetEmployeesList } from '../../hook/useGetEmployeeList'
 import Table from '../../components/table/Table'
+import tableData from '../../tableData.json'
+import { formattedEmployee } from '../../utils/formatter'
 
 const CurrentEmployees = () => {
-  const employeesList = useGetEmployeesList()
+  const employeesList = []
+  Object.values(tableData).map((employee) => {
+    employeesList.push(formattedEmployee(employee))
+  })
 
   const columns = [
     { label: 'First Name', accessor: 'firstName', sortable: true },

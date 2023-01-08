@@ -135,7 +135,7 @@ export interface IEmployee {
   street: string | null
   city: string | null
   state: string | null
-  zipCode: number | null
+  zipCode: string | null
   department: string | null
   createdAt?: string | null
   updatedAt?: string | null
@@ -161,7 +161,7 @@ const initForm: IForm = {
   street: '',
   city: '',
   state: '',
-  zipCode: 0,
+  zipCode: '0',
   department: '',
   isFirstNameValid: false,
   isLastNameValid: false,

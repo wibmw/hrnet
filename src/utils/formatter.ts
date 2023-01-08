@@ -25,13 +25,12 @@ export const timestamp = new Intl.DateTimeFormat('fr-FR', {
 export const formattedEmployee = (employee: IEmployee) => {
   employee.department = retrieveSelection(departementOptions, employee.department)
   employee.state = retrieveSelection(statesOptions, employee.state)
-  
   return employee
 }
 
 const retrieveSelection = (options: IOption[], value: string) => {
   const option = options?.find((option) => option?.value === value)
-  return option?.text
+  return option ? option?.text : value
 }
 
 interface IOption {

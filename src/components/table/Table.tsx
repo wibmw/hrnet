@@ -3,11 +3,15 @@ import TBody from './TBody'
 import { useSortableTable } from '../../hook/useSortableTable'
 import { FilterableTable } from '../../utils/filter'
 import { ChangeEvent, useState } from 'react'
+import useTable from '../../hook/useTable'
+import TFooter from './TFooter'
 
 const Table = ({ title, tableDatas, columns }: IPropsTable) => {
   const [filter, setFilter] = useState<string>(''),
     [sortedDatas, handleSorting] = useSortableTable(tableDatas, columns),
     filteredDatas = FilterableTable(sortedDatas, filter),
+    [page, setPage] = useState<number>(1),
+    { slice, range } = useTable(filteredDatas, page, 10),
     // Onchange
     handleFilterChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
       setFilter(target.value)
@@ -23,8 +27,9 @@ const Table = ({ title, tableDatas, columns }: IPropsTable) => {
         </div>
         <table>
           <THead {...{ columns, handleSorting }} />
-          <TBody {...{ columns, tableDatas: filteredDatas }} />
+          <TBody {...{ columns, tableDatas: slice }} />
         </table>
+        <TFooter range={range} slice={slice} setPage={setPage} page={page} />
       </>
     )
   )
