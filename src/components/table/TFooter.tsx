@@ -17,36 +17,45 @@ const TableFooter = ({ setPage, page, slice, range, setRangeScope }: IPropsTFoot
 
   return (
     <div className='tableFooter'>
-      <button
-        key='previous'
-        className={`button ${page > 1 ? 'activeButton' : 'inactiveButton'}`}
-        onClick={() => setPage(page - 1)}
-      >
-        Previous
-      </button>
-      {range.map((el, index) => (
+      <div className='rangeSelect'>
+        <label htmlFor='range'>Range   </label>
+        <select id='range' name='range' onChange={handleRangeChange}>
+          {rangeOptions.map((option) => (
+            <option key={option?.value} value={option?.value}>
+              {option?.text}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className='buttons'>
         <button
-          key={index}
-          className={`button ${page === el ? 'activeButton' : 'inactiveButton'}`}
-          onClick={() => setPage(el)}
+          key='previous'
+          className={`button ${page > 1 ? 'activeButton' : 'inactiveButton'}`}
+          onClick={() => setPage(page - 1)}
         >
-          {el}
+          Previous
         </button>
-      ))}
-      <button
-        key='next'
-        className={`button ${page < range.length ? 'activeButton' : 'inactiveButton'}`}
-        onClick={() => setPage(page + 1)}
-      >
-        Next
-      </button>
-      <select id='range' name='range' onChange={handleRangeChange}>
-        {rangeOptions.map((option) => (
-          <option key={option?.value} value={option?.value}>
-            {option?.text}
-          </option>
+        {range.map((el, index) => (
+          <button
+            key={index}
+            className={`button ${page === el ? 'activeButton' : 'inactiveButton'}`}
+            onClick={() => setPage(el)}
+          >
+            {el}
+          </button>
         ))}
-      </select>
+        <button
+          key='next'
+          className={`button ${page < range.length ? 'activeButton' : 'inactiveButton'}`}
+          onClick={() => setPage(page + 1)}
+        >
+          Next
+        </button>
+      </div>
+      <div className='pageNumber'>
+        Page {page} of {range.length}
+      </div>
     </div>
   )
 }

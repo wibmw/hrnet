@@ -1,40 +1,41 @@
 /****************** FORMS ************************/
 /****************** Button ************************/
 .form-button {
-    display: block;
-    padding: 8px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-top: 1rem;
-    border-color: $primary-color;
-    background-color: $primary-color;
-    color: $text-light-color;
-    cursor: pointer;
+  display: block;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: $primary-color;
+  background-color: $primary-color;
+  color: $text-light-color;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/****************** Content ************************/
+.form-content {
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: $secondary-color;
+  & h1 {
+    color: darkgreen;
+  }
+  & input[type='text'] {
+    // border: 1px solid;
     border-radius: 5px;
   }
-  
-  /****************** Content ************************/
-  .form-content {
-    width: 300px;
-    margin: 0 auto;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    padding: 2rem;
-    border-radius: 10px;
-    background-color: $secondary-color;
-    & h1 {
-        color: darkgreen;
-    }
-    & input[type="text"] {
-        // border: 1px solid;
-        border-radius: 5px;
-    }
-    & a {
-      text-decoration: none;
-    }
+  & a {
+    text-decoration: none;
   }
-  
-  /****************** Icon ************************/
-  .form-icon {
-    font-size: 5rem;
-  }
+}
+
+/****************** Icon ************************/
+.form-icon {
+  font-size: 5rem;
+}

@@ -22,8 +22,8 @@ const Table = ({ title, tableDatas, columns }: IPropsTable) => {
     filteredDatas && (
       <>
         <h1>{title}</h1>
-        <div className='input-wrapper'>
-          <label htmlFor='filter'>Search</label>
+        <div className='filter'>
+          <label htmlFor='filter'>Search </label>
           <input type='text' id='filter' name='filter' onChange={handleFilterChange} />
         </div>
         <table>
@@ -51,6 +51,7 @@ export interface IColumn {
   label: string
   accessor: string
   sortable: boolean
+  className: string
 }
 
 export interface ITableDatas extends Record<any, any> {

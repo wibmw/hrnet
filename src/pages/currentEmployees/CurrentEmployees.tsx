@@ -10,15 +10,15 @@ const CurrentEmployees = () => {
   })
 
   const columns = [
-    { label: 'First Name', accessor: 'firstName', sortable: true },
-    { label: 'Last Name', accessor: 'lastName', sortable: true },
-    { label: 'Start Date', accessor: 'startDate', sortable: true },
-    { label: 'Department', accessor: 'department', sortable: true },
-    { label: 'Date of Birth', accessor: 'birthDate', sortable: true },
-    { label: 'Street', accessor: 'street', sortable: false },
-    { label: 'City', accessor: 'city', sortable: true },
-    { label: 'State', accessor: 'state', sortable: true },
-    { label: 'Zip Code', accessor: 'zipCode', sortable: true },
+    { label: 'First Name', accessor: 'firstName', sortable: true, className: 'textLeft' },
+    { label: 'Last Name', accessor: 'lastName', sortable: true, className: 'textLeft' },
+    { label: 'Start Date', accessor: 'startDate', sortable: true, className: 'date' },
+    { label: 'Department', accessor: 'department', sortable: true, className: 'textLeft' },
+    { label: 'Date of Birth', accessor: 'birthDate', sortable: true, className: 'date' },
+    { label: 'Street', accessor: 'street', sortable: false, className: 'textLeft' },
+    { label: 'City', accessor: 'city', sortable: true, className: 'textLeft' },
+    { label: 'State', accessor: 'state', sortable: true, className: 'textLeft' },
+    { label: 'Zip Code', accessor: 'zipCode', sortable: true, className: 'textRight' },
   ]
 
   return (

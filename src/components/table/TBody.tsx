@@ -5,10 +5,10 @@ const TableBody = ({ tableDatas, columns }: ITable) => {
     <tbody>
       {tableDatas.length && tableDatas?.map((data, index) => {
         return (
-          <tr key={data.id+'-'+index}>
-            {columns?.map(({ accessor} ) => {
+          <tr key={data.id+'-'+index} >
+            {columns?.map(({ accessor, className} ) => {
               const tData = data[accessor] ? data[accessor] : '——'
-              return <td key={accessor}>{tData}</td>
+              return <td key={accessor} className={className}>{tData}</td>
             })}
           </tr>
         )

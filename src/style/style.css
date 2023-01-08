@@ -188,6 +188,16 @@ table {
   border-collapse: collapse;
 }
 
+.textRight {
+  text-align: right;
+  padding: 5px;
+}
+
+.textLeft {
+  text-align: left;
+  padding: 5px;
+}
+
 .table-content {
   width: fit-content;
   margin: 0 auto;
@@ -196,6 +206,18 @@ table {
   padding: 2rem;
   border-radius: 10px;
   background-color: #d6ebcc;
+}
+.table-content h1 {
+  margin: 0;
+}
+.table-content .filter {
+  font-weight: bolder;
+  padding: 10px;
+  text-align: initial;
+}
+.table-content .filter input {
+  padding: 5px;
+  border-radius: 5px;
 }
 .table-content thead {
   background-color: white;
@@ -231,6 +253,7 @@ table {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
+/* ********************* FOOTER ************************* */
 .tableFooter {
   background-color: #f1f1f1;
   padding: 8px 0px;
@@ -243,10 +266,13 @@ table {
   border-bottom-right-radius: 15px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
+  padding: 15px 0;
 }
-
-.button {
+.tableFooter .pageNumber {
+  font-weight: 400;
+}
+.tableFooter .buttons .button {
   border: none;
   padding: 7px 14px;
   border-radius: 10px;
@@ -254,16 +280,18 @@ table {
   margin-right: 4px;
   margin-left: 4px;
 }
-
-.activeButton {
+.tableFooter .buttons .activeButton {
   color: white;
   background: #7c996e;
   font-weight: bold;
 }
-
-.inactiveButton {
+.tableFooter .buttons .inactiveButton {
   color: #2c3e50;
   background: #d8d8d8;
+}
+.tableFooter .rangeSelect select {
+  padding: 3px;
+  font-size: 15px;
 }
 
 /****************** Media Query ************************/
@@ -285,6 +313,7 @@ table {
   color: #fff;
   cursor: pointer;
   border-radius: 5px;
+  text-align: center;
 }
 
 /****************** Content ************************/

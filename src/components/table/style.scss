@@ -2,6 +2,17 @@
 table {
   border-collapse: collapse;
 }
+
+.textRight{
+  text-align: right;
+  padding: 5px;
+}
+
+.textLeft{
+  text-align: left;
+  padding: 5px;
+}
+
 .table-content {
   width: fit-content;
   margin: 0 auto;
@@ -10,6 +21,20 @@ table {
   padding: 2rem;
   border-radius: 10px;
   background-color: $secondary-color;
+
+  & h1 {
+    margin: 0;
+  }
+
+  & .filter {
+    font-weight: bolder;
+    padding: 10px;
+    text-align: initial;
+    & input {
+      padding: 5px;
+      border-radius: 5px;
+    }
+  }
 
   & thead {
     background-color: white;
@@ -40,6 +65,7 @@ table {
   & tbody {
     & tr {
       border-bottom: 2px solid #ccc;
+      
       &:nth-child(odd) {
         background-color: rgba(255, 255, 255, 0.7);
       }
@@ -50,6 +76,7 @@ table {
   }
 }
 
+/* ********************* FOOTER ************************* */
 .tableFooter {
   background-color: #f1f1f1;
   padding: 8px 0px;
@@ -62,27 +89,39 @@ table {
   border-bottom-right-radius: 15px;
   display: flex;
   align-items: center;
-  justify-content: center;
-}
+  justify-content: space-evenly;
+  padding: 15px 0;
 
-.button {
-  border: none;
-  padding: 7px 14px;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-right: 4px;
-  margin-left: 4px;
-}
+  & .pageNumber {
+    font-weight: 400;
+  }
+  & .buttons {
+    & .button {
+      border: none;
+      padding: 7px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-right: 4px;
+      margin-left: 4px;
+    }
 
-.activeButton {
-  color: white;
-  background: #7c996e;
-  font-weight: bold;
-}
+    & .activeButton {
+      color: white;
+      background: #7c996e;
+      font-weight: bold;
+    }
 
-.inactiveButton {
-  color: #2c3e50;
-  background: #d8d8d8;
+    & .inactiveButton {
+      color: #2c3e50;
+      background: #d8d8d8;
+    }
+  }
+  & .rangeSelect {
+    & select {
+      padding: 3px;
+      font-size: 15px;
+    }
+  }
 }
 
 /****************** Media Query ************************/
