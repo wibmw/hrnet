@@ -1,7 +1,11 @@
-import { useEffect } from 'react'
+import { ChangeEventHandler, useEffect } from 'react'
 import { ITableDatas } from './Table'
 
-const TableFooter = ({ range, setPage, page, slice }: IPropsTFooter) => {
+const TableFooter = ({ setPage, page, slice, range, setRangeScope }: IPropsTFooter) => {
+  const handleRangeChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
+    setRangeScope(parseInt(event.target.value))
+  }
+
   useEffect(() => {
     if (slice.length < 1 && page > range.length) {
       setPage(page - 1)
@@ -36,6 +40,13 @@ const TableFooter = ({ range, setPage, page, slice }: IPropsTFooter) => {
       >
         Next
       </button>
+      <select id='range' name='range' onChange={handleRangeChange}>
+        {rangeOptions.map((option) => (
+          <option key={option?.value} value={option?.value}>
+            {option?.text}
+          </option>
+        ))}
+      </select>
     </div>
   )
 }
@@ -47,4 +58,13 @@ interface IPropsTFooter {
   page: number
   range: number[]
   setPage: (number) => void
+  setRangeScope: (number) => void
 }
+
+const rangeOptions = [
+  { value: 10, text: '10' },
+  { value: 20, text: '20' },
+  { value: 30, text: '30' },
+  { value: 50, text: '50' },
+  { value: 100, text: '100' },
+]

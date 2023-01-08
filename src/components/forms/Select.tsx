@@ -1,17 +1,17 @@
-import { IForm} from '../../pages/createEmployee/CreateEmployee'
+import { IForm } from '../../pages/createEmployee/CreateEmployee'
 import React, { ChangeEvent, ChangeEventHandler, useState } from 'react'
 import InputWrapper, { IFormState } from './InputWrapper'
 import { emptyCheck } from '../../utils/formValidation'
 
-const Select = ({name, label, options, setFormState, message}: IPropsSelect) => {
+const Select = ({ name, label, options, message, setFormState }: IPropsSelect) => {
   const [selected, setSelected] = useState<string>(),
     handleChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
       const target = event.target,
-      name = target.name,
-      value= target.value,
+        name = target.name,
+        value = target.value,
         isValidName = 'is' + name.charAt(0).toUpperCase() + name.slice(1) + 'Valid'
       setSelected(value)
-      setFormState((prev) => ({ ...prev, [name]: value, [isValidName]:  emptyCheck(target, message) }))
+      setFormState((prev) => ({ ...prev, [name]: value, [isValidName]: emptyCheck(target, message) }))
     }
 
   return (
@@ -32,13 +32,12 @@ const Select = ({name, label, options, setFormState, message}: IPropsSelect) => 
 
 export default Select
 
-
-interface IPropsSelect  extends IFormState {
+interface IPropsSelect extends IFormState {
   options: IOption[]
-  message: string
+  message?: string
 }
 
 interface IOption {
-  value: string | null
+  value: number | string | null
   text: string | null
 }

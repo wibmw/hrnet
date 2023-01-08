@@ -11,7 +11,8 @@ const Table = ({ title, tableDatas, columns }: IPropsTable) => {
     [sortedDatas, handleSorting] = useSortableTable(tableDatas, columns),
     filteredDatas = FilterableTable(sortedDatas, filter),
     [page, setPage] = useState<number>(1),
-    { slice, range } = useTable(filteredDatas, page, 10),
+    [rangeScope, setRangeScope] = useState<number>(10),
+    { slice, range } = useTable(filteredDatas, page, rangeScope),
     // Onchange
     handleFilterChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
       setFilter(target.value)
@@ -29,7 +30,7 @@ const Table = ({ title, tableDatas, columns }: IPropsTable) => {
           <THead {...{ columns, handleSorting }} />
           <TBody {...{ columns, tableDatas: slice }} />
         </table>
-        <TFooter range={range} slice={slice} setPage={setPage} page={page} />
+        <TFooter {...{ slice, range, setPage, page, setRangeScope }} />
       </>
     )
   )

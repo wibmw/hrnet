@@ -28,5 +28,5 @@ interface IPropsInputWrapper extends IInputLabel {
 }
 
 export interface IFormState extends IInputLabel {
-  setFormState: React.Dispatch<React.SetStateAction<IForm>>
+  setFormState?: React.Dispatch<React.SetStateAction<IForm>>
 }
