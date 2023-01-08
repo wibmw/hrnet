@@ -1,8 +1,8 @@
-import { GetEmployeesList } from '../../api/firebase'
+import { useGetEmployeesList } from '../../hook/useGetEmployeeList'
 import Table from '../../components/table/Table'
 
 const CurrentEmployees = () => {
-  const employeesList = GetEmployeesList()
+  const employeesList = useGetEmployeesList()
 
   const columns = [
     { label: 'First Name', accessor: 'firstName', sortable: true },

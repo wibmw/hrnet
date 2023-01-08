@@ -1,7 +1,7 @@
 import THead from './THead'
 import TBody from './TBody'
 import { useSortableTable } from '../../hook/useSortableTable'
-import { FilterableTable } from '../../hook/FilterableTable'
+import { FilterableTable } from '../../utils/filter'
 import { ChangeEvent, useState } from 'react'
 
 const Table = ({ title, tableDatas, columns }: IPropsTable) => {
