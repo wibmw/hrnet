@@ -2,7 +2,6 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.4.2/css/all.min.css);
 body {
   margin: 0;
-  min-width: 768px;
 }
 
 #root {
@@ -184,8 +183,17 @@ select {
 }
 
 /****************** Table Content ************************/
+* {
+  box-sizing: border-box;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
 table {
   border-collapse: collapse;
+  width: max-content;
 }
 
 .textRight {
@@ -199,6 +207,7 @@ table {
 }
 
 .table-content {
+  max-width: 90%;
   width: fit-content;
   margin: 0 auto;
   margin-top: 3rem;
@@ -256,18 +265,16 @@ table {
 /* ********************* FOOTER ************************* */
 .tableFooter {
   background-color: #f1f1f1;
-  padding: 8px 0px;
-  width: 100%;
-  font-weight: 500;
-  text-align: left;
-  font-size: 16px;
+  padding: 15px 10px;
   color: #2c3e50;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  padding: 15px 0;
+  position: sticky;
+  left: 0;
+  right: 0;
 }
 .tableFooter .pageNumber {
   font-weight: 400;
@@ -295,9 +302,23 @@ table {
 }
 
 /****************** Media Query ************************/
-@media (max-width: 770px) {
+@media (max-width: 720px) {
+  .tableFooter {
+    width: max-content;
+  }
+}
+@media (max-width: 450px) {
   .table-content {
-    max-width: 650px;
+    padding: 1rem;
+  }
+  .table-content h1 {
+    font-size: 18px;
+  }
+  .table-content .filter {
+    font-size: 14px;
+  }
+  .table-content .filter input {
+    width: 70%;
   }
 }
 /****************** FORMS ************************/

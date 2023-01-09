@@ -1,19 +1,29 @@
 /****************** Table Content ************************/
-table {
-  border-collapse: collapse;
+* {
+  box-sizing: border-box;
 }
 
-.textRight{
+.tableWrapper {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: max-content;
+}
+
+.textRight {
   text-align: right;
   padding: 5px;
 }
 
-.textLeft{
+.textLeft {
   text-align: left;
   padding: 5px;
 }
 
 .table-content {
+  max-width: 90%;
   width: fit-content;
   margin: 0 auto;
   margin-top: 3rem;
@@ -65,7 +75,7 @@ table {
   & tbody {
     & tr {
       border-bottom: 2px solid #ccc;
-      
+
       &:nth-child(odd) {
         background-color: rgba(255, 255, 255, 0.7);
       }
@@ -79,18 +89,16 @@ table {
 /* ********************* FOOTER ************************* */
 .tableFooter {
   background-color: #f1f1f1;
-  padding: 8px 0px;
-  width: 100%;
-  font-weight: 500;
-  text-align: left;
-  font-size: 16px;
+  padding: 15px 10px;
   color: #2c3e50;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  padding: 15px 0;
+  position: sticky;
+  left: 0;
+  right: 0;
 
   & .pageNumber {
     font-weight: 400;
@@ -125,8 +133,22 @@ table {
 }
 
 /****************** Media Query ************************/
-@media (max-width: 770px) {
-  .table-content {
-    max-width: 650px;
+@media (max-width: 720px) {
+  .tableFooter {
+    width: max-content;
   }
+}
+@media (max-width: 450px) {
+.table-content {
+  padding: 1rem;
+  & h1 {
+    font-size: 18px;
+  }
+  & .filter {
+    font-size: 14px;
+    & input{
+      width:70%;
+    }
+  }
+}
 }
