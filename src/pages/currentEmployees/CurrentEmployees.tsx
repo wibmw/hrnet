@@ -1,5 +1,6 @@
 import { useGetEmployeesList } from '../../hook/useGetEmployeeList'
 import Table from '../../components/table/Table'
+import Loading from '../../assets/images/loading.png'
 
 const CurrentEmployees = () => {
   /* const employeesList = []
@@ -25,7 +26,11 @@ const CurrentEmployees = () => {
       {/** *********** Sign In Page ******************/}
       <main className='main main-bg'>
         <section className='table-content'>
-          {employeesList.length && <Table title='Employees List' tableDatas={employeesList} columns={columns} />}
+          {employeesList.length ? (
+            <Table title='Employees List' tableDatas={employeesList} columns={columns} />
+          ) : (
+            <img src={Loading} alt="wait until the page loads" />
+          )}
         </section>
       </main>
     </>

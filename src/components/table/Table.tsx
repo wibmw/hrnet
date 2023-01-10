@@ -19,24 +19,22 @@ const Table = ({ title, tableDatas, columns }: IPropsTable) => {
       setFilteredData(FilterableTable(sortedDatas, target.value))
     }
 
-  return (
-    slice && (
-      <>
-        <h1>{title}</h1>
-        <div className='filter'>
-          <label htmlFor='filter'>Search </label>
-          <input type='text' id='filter' name='filter' onChange={handleFilterChange} />
-        </div>
-        <div className='tableWrapper'>
-          <table>
-            <THead {...{ columns, handleSorting }} />
-            <TBody {...{ columns, tableDatas: slice }} />
-          </table>
-          <TFooter {...{ slice, range, setPage, page, setRangeScope }} />
-        </div>
-      </>
-    )
-  )
+  return slice.length ? (
+    <>
+      <h1>{title}</h1>
+      <div className='filter'>
+        <label htmlFor='filter'>Search </label>
+        <input type='text' id='filter' name='filter' onChange={handleFilterChange} />
+      </div>
+      <div className='tableWrapper'>
+        <table>
+          <THead {...{ columns, handleSorting }} />
+          <TBody {...{ columns, tableDatas: slice }} />
+        </table>
+        <TFooter {...{ slice, range, setPage, page, setRangeScope }} />
+      </div>
+    </>
+  ) : null
 }
 
 export default Table
