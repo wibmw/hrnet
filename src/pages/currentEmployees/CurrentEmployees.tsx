@@ -1,15 +1,13 @@
 import { useGetEmployeesList } from '../../hook/useGetEmployeeList'
 import Table from '../../components/table/Table'
 import Loading from '../../assets/images/loading.png'
-import { useState } from 'react'
-import { IEmployee } from '../createEmployee/CreateEmployee'
 
 const CurrentEmployees = () => {
   /* const employeesList = []
   Object.values(tableData).map((employee) => {
     employeesList.push(formattedEmployee(employee))
   }) */
-  const [employeesList, setEmployeesList] = useState<IEmployee[]>(useGetEmployeesList())
+  const employeesList = useGetEmployeesList()
 
   const columns = [
     { label: 'First Name', accessor: 'firstName', sortable: true, className: 'textLeft' },
@@ -31,7 +29,7 @@ const CurrentEmployees = () => {
           {employeesList.length ? (
             <Table title='Employees List' tableDatas={employeesList} columns={columns} />
           ) : (
-            <img src={Loading} alt='wait until the page loads' />
+            <img src={Loading} alt="wait until the page loads" />
           )}
         </section>
       </main>
