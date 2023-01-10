@@ -1,17 +1,6 @@
 import { useState } from 'react'
 import { ITableDatas } from '../components/table/Table'
 
-const getFilteredData = (unFilteredDatas: ITableDatas[], filter: string) => {
-  const insensitiveFilter = new RegExp(filter.trim(), 'i'),
-    filteredDatas = unFilteredDatas?.filter((data) =>
-      Object.values(data).some((value) => typeof value === 'string' && value.match(insensitiveFilter)),
-    )
-
-  if (filter.trim() === '') return unFilteredDatas
-
-  return filteredDatas
-}
-
 function getDefaultSorting(defaultTableData: ITableDatas[], columns) {
   if (!(Symbol.iterator in Object(defaultTableData))) {
     return defaultTableData
@@ -35,10 +24,8 @@ function getDefaultSorting(defaultTableData: ITableDatas[], columns) {
   return sorted
 }
 
-export const useSortableTable = (data, columns, filter) => {
-
-  const filteredData = getFilteredData(data, filter)
-  const [tableData, setTableData] = useState(getDefaultSorting(filteredData, columns))
+export const useSortableTable = (data, columns) => {
+  const [tableData, setTableData] = useState(getDefaultSorting(data, columns))
 
   const handleSorting = (sortField, sortOrder) => {
     if (sortField) {

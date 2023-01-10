@@ -1,20 +1,22 @@
 import THead from './THead'
 import TBody from './TBody'
 import { useSortableTable } from '../../hook/useSortableTable'
-import { ChangeEvent, useMemo, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import useTable from '../../hook/useTable'
 import TFooter from './TFooter'
+import { FilterableTable } from '../../utils/filter'
 
 const Table = ({ title, tableDatas, columns }: IPropsTable) => {
   const [filter, setFilter] = useState<string>(''),
-    [sortedDatas, handleSorting] = useSortableTable(tableDatas, columns, filter),
+    [sortedDatas, handleSorting] = useSortableTable(tableDatas, columns),
     [page, setPage] = useState<number>(1),
     [rangeScope, setRangeScope] = useState<number>(10),
-    { slice, range } = useTable(sortedDatas, page, rangeScope),
-    rerender = useMemo(() => true, [filter]),
+    [filteredData, setFilteredData] = useState(FilterableTable(sortedDatas, filter)),
+    { slice, range } = useTable(filteredData, page, rangeScope),
     // Onchange
     handleFilterChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
       setFilter(target.value)
+      setFilteredData(FilterableTable(sortedDatas, target.value))
     }
 
   return (
