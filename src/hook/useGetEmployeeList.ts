@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react'
-import { IEmployee } from '../pages/createEmployee/CreateEmployee'
 import { onValue, orderByKey, query, ref } from 'firebase/database'
-import { formattedEmployee } from '../utils/formatter'
 import { db } from '../api/firebase'
+import { IEmployee } from '../pages/createEmployee/CreateEmployee'
+import { formattedEmployee } from '../utils/formatter'
 
-// Get all employees
+// Get Employees data from Firebase Database
 export const useGetEmployeesList = () => {
   const [employeesList, setEmployeesList] = useState<IEmployee[]>([])
 
@@ -15,6 +15,7 @@ export const useGetEmployeesList = () => {
         const data: IEmployee[] = snapshot.val()
 
         if (snapshot.exists()) {
+          // Format datas before returning it
           const employees = Object.values(data).map((employe) => formattedEmployee(employe))
           setEmployeesList(employees)
         }

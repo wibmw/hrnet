@@ -1,15 +1,14 @@
 import React from 'react'
 import { IForm } from '../../pages/createEmployee/CreateEmployee'
 
-
-
 const InputWrapper = ({ name, label, children }: IPropsInputWrapper) => {
-
   return (
     <>
-      {/** *********** Input ******************/}
+      {/** *********** Input Wrapper ******************/}
       <div className='input-wrapper'>
+        {/** *********** Child Label ******************/}
         <label htmlFor={name}>{label}</label>
+        {/** *********** Child section ******************/}
         {children && children}
       </div>
     </>
@@ -18,6 +17,7 @@ const InputWrapper = ({ name, label, children }: IPropsInputWrapper) => {
 
 export default InputWrapper
 
+// Interfaces
 interface IInputLabel {
   name: string
   label: string

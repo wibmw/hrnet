@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import Input from '../../components/forms/InputText'
-import DatePicker from '../../components/forms/DatePicker'
+import Input from '../../components/forms/CustomInput'
 import Select from '../../components/forms/Select'
 import { departementOptions, statesOptions } from '../../utils/localDatas'
 import Modal from '../../components/modal/Modal'
@@ -10,20 +9,26 @@ import { createNewEmployee } from '../../api/firebase'
 
 const CreateEmployee = () => {
   const navigate = useNavigate(),
+    // Form Sate
     [formState, setFormState] = useState<IForm>(initForm),
+    // Modal Open/Close toggle
     [isOpen, setisOpen] = useState(false),
     toggle = () => {
       setisOpen(!isOpen)
     },
+    // Form Validation and Store in the database
     save = (event: React.MouseEvent) => {
       const fieldsNumber = Object.keys(formState).filter((fieldName) => fieldName.includes('Valid')).length,
         countValid = Object.values(formState).filter(Boolean).length / 2,
         element = event.target as HTMLInputElement
+
       if (fieldsNumber === countValid) {
-        setisOpen(true)
+        // If all fields are valid then create the employee and open the modal
         clearValidationMessage(element)
         createNewEmployee(formState)
+        setisOpen(true)
       } else {
+        // Else show an error message
         setValidationMessage(element, 'The form is not fullfilled correctly')
       }
     }
@@ -43,6 +48,7 @@ const CreateEmployee = () => {
               regexp={/^[a-zA-Zéèàçùê -]{2,50}$/}
               message='Invalid First Name !'
               setFormState={setFormState}
+              type='text'
             />
             {/** *********** Lastname Input ******************/}
             <Input
@@ -51,11 +57,24 @@ const CreateEmployee = () => {
               regexp={/^[a-zA-Zéèàçùê -]{2,50}$/}
               message='Invalid Last Name !'
               setFormState={setFormState}
+              type='text'
             />
             {/** *********** Birth's Date Picker ******************/}
-            <DatePicker name='birthDate' label='Date of Birth' message='Invalid Birth Date !' setFormState={setFormState} />
+            <Input
+              name='birthDate'
+              label='Date of Birth'
+              message='Invalid Birth Date !'
+              setFormState={setFormState}
+              type='date'
+            />
             {/** *********** Start Date Picker ******************/}
-            <DatePicker name='startDate' label='Start Date' message='Invalid Start Date !' setFormState={setFormState} />
+            <Input
+              name='startDate'
+              label='Start Date'
+              message='Invalid Start Date !'
+              setFormState={setFormState}
+              type='date'
+            />
             <fieldset className='input-wrapper'>
               <legend>Address</legend>
               {/** *********** Street Input ******************/}
@@ -65,6 +84,7 @@ const CreateEmployee = () => {
                 regexp={/^[a-zA-Z0-9éèàçùê, -]{2,120}$/}
                 message='Invalid Street !'
                 setFormState={setFormState}
+                type='text'
               />
               {/** *********** City Input ******************/}
               <Input
@@ -73,6 +93,7 @@ const CreateEmployee = () => {
                 regexp={/^[a-zA-Zéèàçùê -]{2,50}$/}
                 message='Invalid City !'
                 setFormState={setFormState}
+                type='text'
               />
               {/** *********** State Selelct ******************/}
               <Select
@@ -89,6 +110,7 @@ const CreateEmployee = () => {
                 regexp={/^[0-9]{4,5}$/}
                 message='Invalid Zip Code !'
                 setFormState={setFormState}
+                type='text'
               />
             </fieldset>
             {/** *********** Department Selelct ******************/}
@@ -113,11 +135,12 @@ const CreateEmployee = () => {
             </div>
           </form>
         </section>
+        {/** *********** Modal ******************/}
         <Modal isOpen={isOpen} toggle={toggle}>
           <div>Employee Created !</div>
           <br />
           <div className='form-button' onClick={() => navigate('/employees-list')}>
-            Ok
+            See Employee List
           </div>
         </Modal>
       </main>
@@ -127,6 +150,7 @@ const CreateEmployee = () => {
 
 export default CreateEmployee
 
+// Interfaces
 export interface IEmployee {
   firstName: string | null
   lastName: string | null

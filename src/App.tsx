@@ -13,9 +13,9 @@ function App() {
         <Routes>
           {/** *********** Error Page ******************/}
           <Route path={'*'} element={<Error />} />
-          {/** *********** Homepage without params ******************/}
+          {/** *********** Homepage Create a new employee ******************/}
           <Route path={'/'} element={<CreateEmployee />} />
-          {/** *********** Sign In Page ******************/}
+          {/** *********** Current Employee List Page ******************/}
           <Route path={'/employees-list'} element={<CurrentEmployees />} />
         </Routes>
         <Footer />

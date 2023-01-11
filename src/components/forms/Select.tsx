@@ -1,10 +1,10 @@
-import { IForm } from '../../pages/createEmployee/CreateEmployee'
-import React, { ChangeEvent, ChangeEventHandler, useState } from 'react'
+import { ChangeEventHandler, useState } from 'react'
 import InputWrapper, { IFormState } from './InputWrapper'
 import { emptyCheck } from '../../utils/formValidation'
 
 const Select = ({ name, label, options, message, setFormState }: IPropsSelect) => {
   const [selected, setSelected] = useState<string>(),
+    // OnChange, selected value validation and set it in the Form State
     handleChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
       const target = event.target,
         name = target.name,
@@ -16,9 +16,10 @@ const Select = ({ name, label, options, message, setFormState }: IPropsSelect) =
 
   return (
     <>
-      {/** *********** Input ******************/}
+      {/** *********** Select ******************/}
       <InputWrapper name={name} label={label}>
         <select id={name} name={name} value={selected} onChange={handleChange}>
+          {/** *********** Create options from an Array ******************/}
           {options.map((option) => (
             <option key={option?.value} value={option?.value}>
               {option?.text}
@@ -32,6 +33,7 @@ const Select = ({ name, label, options, message, setFormState }: IPropsSelect) =
 
 export default Select
 
+// Interfaces
 interface IPropsSelect extends IFormState {
   options: IOption[]
   message?: string

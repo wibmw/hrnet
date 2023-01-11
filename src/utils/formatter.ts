@@ -12,7 +12,7 @@ export const thousandsSeparator = (num: number) => {
 export const expiresDate = (time: number) => {
   return new Date(new Date().getTime() + time * 60 * 60 * 1000)
 }
-
+// Timestamp for Created and Updated in database
 export const timestamp = new Intl.DateTimeFormat('fr-FR', {
   year: 'numeric',
   month: '2-digit',
@@ -21,7 +21,7 @@ export const timestamp = new Intl.DateTimeFormat('fr-FR', {
   minute: '2-digit',
   second: '2-digit',
 }).format(Date.now())
-
+// Format correctly the employee datas before display it
 export const formattedEmployee = (employee: IEmployee) => {
   employee.department = retrieveSelection(departementOptions, employee.department)
   employee.state = retrieveSelection(statesOptions, employee.state)
@@ -29,17 +29,18 @@ export const formattedEmployee = (employee: IEmployee) => {
   employee.startDate = dateFormat(employee.startDate)
   return employee
 }
-
+// Retrieve Selected Data from Select
 const retrieveSelection = (options: IOption[], value: string) => {
   const option = options?.find((option) => option?.value === value)
   return option ? option?.text : value
 }
-
+// Format Date for locale shape
 const dateFormat = (date: string) => {
   const newDate = new Date(date)
   return date.includes('/') ? date : newDate.toLocaleDateString()
 }
 
+// Interfaces
 interface IOption {
   value: string | null
   text: string | null

@@ -1,30 +1,4 @@
-// import Cookies from 'universal-cookie'
-import { expiresDate } from './formatter'
-
-// Return the stocked token from cookies
-/* export const getLocalToken = () => {
-  const cookie = new Cookies()
-  return cookie.get('token')
-}
-
-// Put the new token in cookies
-export const setLocalToken = (token: string, rememberMe: boolean) => {
-  const cookie = new Cookies(),
-    options = { path: '/', expires: expiresDate(rememberMe ? 395 * 24 : 0.5) }
-  cookie.set('token', token, options)
-}
-*/
-
-export const handleSaveToPC = (jsonData, filename) => {
-  const fileData = JSON.stringify(jsonData)
-  const blob = new Blob([fileData], { type: 'text/plain' })
-  const url = URL.createObjectURL(blob)
-  const link = document.createElement('a')
-  link.download = `${filename}.json`
-  link.href = url
-  link.click()
-}
-
+// Department List for the Select Options
 export const departementOptions = [
   { value: '', text: '--Choose an option--' },
   { value: 'sales', text: 'Sales' },
@@ -34,6 +8,7 @@ export const departementOptions = [
   { value: 'legal', text: 'Legal' },
 ]
 
+// State List for the Select Options
 export const statesOptions = [
   { value: '', text: '--Choose an option--' },
   { text: 'Alabama', value: 'AL' },

@@ -14,7 +14,7 @@ export const setValidationMessage = (element: HTMLElement, message: string): voi
 //* ******************** CHECK FUNCTIONS  ***********************************/
 // Input Check function
 export const inputCheck = (element: HTMLInputElement, regexp: RegExp, message: string) => {
-  const isValid = ( isEmpty(element?.value) || !regexp?.test(element?.value))
+  const isValid = isEmpty(element?.value) || !regexp?.test(element?.value)
   return isError(element, isValid, message)
 }
 
@@ -24,9 +24,12 @@ export const emptyCheck = (element: HTMLInputElement | (EventTarget & HTMLSelect
   return isError(element, isValid, message)
 }
 
-
 // returns check result with error message management
-export const isError = (element: HTMLInputElement | (EventTarget & HTMLSelectElement), isNotValid: boolean, message: string) => {
+export const isError = (
+  element: HTMLInputElement | (EventTarget & HTMLSelectElement),
+  isNotValid: boolean,
+  message: string,
+) => {
   if (isNotValid) {
     setValidationMessage(element, message)
     return false
@@ -35,4 +38,5 @@ export const isError = (element: HTMLInputElement | (EventTarget & HTMLSelectEle
   return true
 }
 
-const isEmpty = (fieldValue: string) =>  !(typeof fieldValue === 'string' && fieldValue.trim() !== '')
+// Check for empty value
+const isEmpty = (fieldValue: string) => !(typeof fieldValue === 'string' && fieldValue.trim() !== '')
