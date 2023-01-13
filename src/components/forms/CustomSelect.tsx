@@ -2,7 +2,7 @@ import { ChangeEventHandler, useState } from 'react'
 import InputWrapper, { IFormState } from './InputWrapper'
 import { emptyCheck } from '../../utils/formValidation'
 
-const Select = ({ name, label, options, message, setFormState }: IPropsSelect) => {
+const CustomSelect = ({ name, label, options, message, setFormState }: IPropsSelect) => {
   const [selected, setSelected] = useState<string>(),
     // OnChange, selected value validation and set it in the Form State
     handleChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
@@ -31,7 +31,7 @@ const Select = ({ name, label, options, message, setFormState }: IPropsSelect) =
   )
 }
 
-export default Select
+export default CustomSelect
 
 // Interfaces
 interface IPropsSelect extends IFormState {

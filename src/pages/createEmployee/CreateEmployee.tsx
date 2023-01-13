@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import Input from '../../components/forms/CustomInput'
-import Select from '../../components/forms/Select'
+import CustomSelect from '../../components/forms/CustomSelect'
 import { departementOptions, statesOptions } from '../../utils/localDatas'
-import Modal from '../../components/modal/Modal'
+
 import { clearValidationMessage, setValidationMessage } from '../../utils/formValidation'
 import { useNavigate } from 'react-router-dom'
 import { createNewEmployee } from '../../api/firebase'
+import { CustomModal } from '@wibmw/custom-modal'
 
 const CreateEmployee = () => {
   const navigate = useNavigate(),
@@ -13,9 +14,7 @@ const CreateEmployee = () => {
     [formState, setFormState] = useState<IForm>(initForm),
     // Modal Open/Close toggle
     [isOpen, setisOpen] = useState(false),
-    toggle = () => {
-      setisOpen(!isOpen)
-    },
+    toggle = () => setisOpen(!isOpen),
     // Form Validation and Store in the database
     save = (event: React.MouseEvent) => {
       const fieldsNumber = Object.keys(formState).filter((fieldName) => fieldName.includes('Valid')).length,
@@ -96,7 +95,7 @@ const CreateEmployee = () => {
                 type='text'
               />
               {/** *********** State Selelct ******************/}
-              <Select
+              <CustomSelect
                 name='state'
                 label='State'
                 options={statesOptions}
@@ -114,7 +113,7 @@ const CreateEmployee = () => {
               />
             </fieldset>
             {/** *********** Department Selelct ******************/}
-            <Select
+            <CustomSelect
               name='department'
               label='Department'
               options={departementOptions}
@@ -136,13 +135,13 @@ const CreateEmployee = () => {
           </form>
         </section>
         {/** *********** Modal ******************/}
-        <Modal isOpen={isOpen} toggle={toggle}>
-          <div>Employee Created !</div>
+        <CustomModal isOpen={isOpen} toggle={toggle}>
+          <div>Employee Created Successfully !</div>
           <br />
           <div className='form-button' onClick={() => navigate('/employees-list')}>
             See Employee List
           </div>
-        </Modal>
+        </CustomModal>
       </main>
     </>
   )

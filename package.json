@@ -17,6 +17,7 @@
     "@types/react-dom": "^18.0.0",
     "@types/webpack": "^5.28.0",
     "@types/webpack-dev-server": "^4.7.2",
+    "@wibmw/custom-modal": "^0.0.3",
     "babel-loader": "^9.1.2",
     "brotli-webpack-plugin": "^1.1.0",
     "css-loader": "^6.7.3",
