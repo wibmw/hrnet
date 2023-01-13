@@ -23,6 +23,7 @@ module.exports = {
       },
     ],
   },
+  ignoreWarnings: [/Failed to parse source map/],
   resolve: {
     extensions: ['.ts', '.js'],
   },
@@ -55,5 +56,3 @@ module.exports = {
     }),
   ],
 }
-
-export default config

@@ -1,12 +1,11 @@
 import { useState } from 'react'
-import Input from '../../components/forms/CustomInput'
-import CustomSelect from '../../components/forms/CustomSelect'
 import { departementOptions, statesOptions } from '../../utils/localDatas'
 
 import { clearValidationMessage, setValidationMessage } from '../../utils/formValidation'
 import { useNavigate } from 'react-router-dom'
 import { createNewEmployee } from '../../api/firebase'
 import { CustomModal } from '@wibmw/custom-modal'
+import { CustomInput, CustomSelect, IForm } from '@wibmw/custom-form'
 
 const CreateEmployee = () => {
   const navigate = useNavigate(),
@@ -41,7 +40,7 @@ const CreateEmployee = () => {
           {/** *********** Form ******************/}
           <form>
             {/** *********** Firstname Input ******************/}
-            <Input
+            <CustomInput
               name='firstName'
               label='First Name'
               regexp={/^[a-zA-Zéèàçùê -]{2,50}$/}
@@ -50,7 +49,7 @@ const CreateEmployee = () => {
               type='text'
             />
             {/** *********** Lastname Input ******************/}
-            <Input
+            <CustomInput
               name='lastName'
               label='Last Name'
               regexp={/^[a-zA-Zéèàçùê -]{2,50}$/}
@@ -59,7 +58,7 @@ const CreateEmployee = () => {
               type='text'
             />
             {/** *********** Birth's Date Picker ******************/}
-            <Input
+            <CustomInput
               name='birthDate'
               label='Date of Birth'
               message='Invalid Birth Date !'
@@ -67,7 +66,7 @@ const CreateEmployee = () => {
               type='date'
             />
             {/** *********** Start Date Picker ******************/}
-            <Input
+            <CustomInput
               name='startDate'
               label='Start Date'
               message='Invalid Start Date !'
@@ -77,7 +76,7 @@ const CreateEmployee = () => {
             <fieldset className='input-wrapper'>
               <legend>Address</legend>
               {/** *********** Street Input ******************/}
-              <Input
+              <CustomInput
                 name='street'
                 label='Street'
                 regexp={/^[a-zA-Z0-9éèàçùê, -]{2,120}$/}
@@ -86,7 +85,7 @@ const CreateEmployee = () => {
                 type='text'
               />
               {/** *********** City Input ******************/}
-              <Input
+              <CustomInput
                 name='city'
                 label='City'
                 regexp={/^[a-zA-Zéèàçùê -]{2,50}$/}
@@ -103,7 +102,7 @@ const CreateEmployee = () => {
                 setFormState={setFormState}
               />
               {/** *********** Zip Code Input ******************/}
-              <Input
+              <CustomInput
                 name='zipCode'
                 label='Zip Code'
                 regexp={/^[0-9]{4,5}$/}
@@ -164,17 +163,10 @@ export interface IEmployee {
   updatedAt?: string | null
 }
 
-export interface IForm extends IEmployee {
-  isFirstNameValid: boolean
-  isLastNameValid: boolean
-  isBirthDateValid: boolean
-  isStartDateValid: boolean
-  isStreetValid: boolean
-  isCityValid: boolean
-  isStateValid: boolean
-  isZipCodeValid: boolean
-  isDepartmentValid: boolean
+export interface IForm extends Record<any, unknown> {
+  id?: number
 }
+
 
 const initForm: IForm = {
   firstName: '',
