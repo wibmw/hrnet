@@ -2985,10 +2985,10 @@
   resolved "https://registry.yarnpkg.com/@wibmw/custom-modal/-/custom-modal-0.0.3.tgz#500977261887bc16c01c199660d55fffbe197f12"
   integrity sha512-EjgXpEZaf3wvuVOGznK/Hm4qVDY/uWoRM5zXiDuQ82HRLTtMl3D7Aupgwa1iNqPkJ8Ujsq2/k25W+h0/2LBNeg==
 
-"@wibmw/custom-table@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@wibmw/custom-table/-/custom-table-0.0.2.tgz#1f90228e7234d2e1ed43396c544deafc057de105"
-  integrity sha512-e23lFT7UR3x06R9uBOtG+Kgzp1X3Yal8lNAFzhkkOqI0p2VVk94Uqs0HICtQlnIHPV7/xzWRbKWfWE2NKO/IBg==
+"@wibmw/custom-table@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@wibmw/custom-table/-/custom-table-0.0.4.tgz#e74a95b1ceffc8de25335d3f5ab6d5537cc5161c"
+  integrity sha512-QEMNTz64YVmPhNdzCSs0hLUyYElItwJAAn0KqKwnsDVRb65csaDeR+DTUrK/hT4cWUUKERv8ymVlGWVNaF8eSg==
 
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
