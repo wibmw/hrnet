@@ -1,13 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IColumn, ITableDatas } from '../components/table/Table'
+import { FilterableTable } from '../utils/filter'
 
 // Sort Table Hook
 const useSortableTable = (data: ITableDatas[], columns: IColumn[]) => {
-  const [tableData, setTableData] = useState(getDefaultSorting(data, columns))
+  // Table Search Filter
+  const [filter, setFilter] = useState<string>(''),
+    // Table Filtered Datas
+    [filteredData, setFilteredData] = useState(data),
+    [tableData, setTableData] = useState(getDefaultSorting(filteredData, columns))
 
-  const handleSorting = (sortedField: string, sortOrder: string) => {
+  useEffect(() => {
+    setFilteredData(FilterableTable(data, filter))
+  }, [filter])
+
+  const HandleSorting = (sortedField: string, sortOrder: string) => {
     if (sortedField) {
-      const sorted = [...tableData]?.sort((a, b) => {
+      const sorted = [...getDefaultSorting(filteredData, columns)]?.sort((a, b) => {
         // Check for null values
         if (a[sortedField] === null || b[sortedField] === null) return isNullValue(a, b, sortedField)
         // return sorted datas
@@ -17,8 +26,11 @@ const useSortableTable = (data: ITableDatas[], columns: IColumn[]) => {
       setTableData(sorted)
     }
   }
+  useEffect(() => {
+    setTableData(getDefaultSorting(filteredData, columns))
+  }, [filteredData])
 
-  return [tableData, handleSorting] as const
+  return [tableData, HandleSorting, setFilter] as const
 }
 
 // Default sorting

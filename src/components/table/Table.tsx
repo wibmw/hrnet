@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import THead from './THead'
 import TBody from './TBody'
 import TFooter from './TFooter'
@@ -8,23 +8,18 @@ import usePaginationTable from '../../hook/usePaginationTable'
 import { FilterableTable } from '../../utils/filter'
 
 const Table = ({ title, tableDatas, columns }: IPropsTable) => {
-  // Table Search Filter
-  const [filter, setFilter] = useState<string>(''),
-    // Table Sorted Datas
-    [sortedDatas, handleSorting] = useSortableTable(tableDatas, columns),
+  // Table Sorted Datas
+  const [sortedDatas, handleSorting, setFilter] = useSortableTable(tableDatas, columns),
     // Table Active Page
     [page, setPage] = useState<number>(1),
     // Table Page Lines Number
     [rangeScope, setRangeScope] = useState<number>(10),
-    // Table Filtered Datas
-    [filteredData, setFilteredData] = useState(FilterableTable(sortedDatas, filter)),
     // Filtered Datas Slices
-    { slice, range } = usePaginationTable(filteredData, page, rangeScope),
+    { slice, range } = usePaginationTable(sortedDatas, page, rangeScope),
     // On Filter Change, update the filter state, filter the sorted datas with the new value
     // Set the active page to 1 to prevent issues
     handleFilterChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
       setFilter(target.value.replace(/[^a-zA-Z0-9 ]/g, ''))
-      setFilteredData(FilterableTable(sortedDatas, filter))
       setPage(1)
     }
 
