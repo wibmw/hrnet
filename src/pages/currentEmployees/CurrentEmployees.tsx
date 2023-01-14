@@ -1,6 +1,6 @@
 import { useGetEmployeesList } from '../../hook/useGetEmployeeList'
-import Table from '../../components/table/Table'
 import Loading from '../../assets/images/loading.png'
+import { Table } from '@wibmw/custom-table'
 
 const CurrentEmployees = () => {
   // Retrieve Employees List
